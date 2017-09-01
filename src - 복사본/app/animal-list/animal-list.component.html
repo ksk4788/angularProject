@@ -1,0 +1,62 @@
+
+<app-header></app-header>
+	<div id="ttt" class="col-md-12">
+	<form class="form-horizontal form-horizontal_x">
+	<div class="col-md-12">
+	    <div class="form-group">
+
+	      <div class="col-sm-4">
+		 <select  name="hotel" id="hotel" required="" class="form-control" onchange="changeFormaction2(this.value);">
+            <option value="" selected="">품종 조건설정</option>
+            <option value="67961">Pride Plaza Hotel Ahmedabad</option>
+            <option value="67964">The Pride Hotel Bengaluru</option>
+    </select>
+
+	        <!-- <input type="text" class="form-control" id="email" placeholder="Enter email"> -->
+	      </div>
+
+		  <div class="col-sm-4">
+		 <select  name="hotel" id="hotel" required="" class="form-control" onchange="changeFormaction2(this.value);">
+	          <option value="" selected="">지역 조건설정</option>
+	          <option value="67961">서울</option>
+	          <option value="67964">경기</option>
+	          <option value="29191">충북</option>
+	          <option value="67963">충남</option>
+	          <option value="29190">The Pride Hotel, Pune</option>
+
+	  </select>
+
+	        <!-- <input type="text" class="form-control" id="email" placeholder="Enter email"> -->
+	      </div>
+	      <div class="col-sm-4">
+		 <select  name="hotel" id="hotel" required="" class="form-control" onchange="changeFormaction2(this.value);">
+          <option value="" selected="">상태 조건설정</option>
+          <option value="67961">보호중</option>
+          <option value="67964">종료</option>
+          <option value="29191">기타</option>
+    </select>
+
+	        <!-- <input type="text" class="form-control" id="email" placeholder="Enter email"> -->
+	      </div>
+	    </div>
+		</div>
+
+	  </form>
+	  </div>
+
+
+<ul class="cards" *ngFor="let animal of animals">
+  <li class="cards__item">
+    <div class="card">
+      <img class="card__image" src="http://www.animal.go.kr/files/shelter/2014/02/201403010903898.jpg">
+      <div class="card__content">
+        <div class="card__title">{{animal.processState}}</div>
+        <p class="card__text">
+					유기번호 : {{animal.desertionNo}}
+					품종 : {{animal.kindCd}}
+				</p>
+        <button class="btn btn--block card__btn">상세보기</button>
+      </div>
+    </div>
+  </li>
+</ul>

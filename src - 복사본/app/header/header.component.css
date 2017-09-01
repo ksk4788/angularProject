@@ -1,0 +1,78 @@
+.row.row-no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+.input-group .input-group.input-group-full {
+    width: 100%;
+}
+.input-group .input-group-btn div.btn {
+    padding: 0;
+    padding-top: 1px;
+}
+.input-group .input-group-btn div.btn .form-control {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+}
+    ul.list-unstyled li a {
+        padding: 0.5em;
+    }
+@media (min-width: 768px) {
+    #bs-example-navbar-collapse-1 > div > div:nth-child(2) {
+        margin-left: 2em;
+    }
+    ul.list-unstyled li a {
+        display: table;
+        width: 100%;
+        height: 5em;
+    }
+    ul.list-unstyled li a > span {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .vertical-align-md {
+        display: table;
+        width: 100%;
+        height: 5em;
+    }
+    .vertical-align-md > * {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+}
+
+#bs-example-navbar-collapse-1 > div > div > div {
+    /*height: 5em;
+    position: relative;
+    overflow: hidden;*/
+}
+
+
+/* colours */
+ul.list-unstyled a {
+    color: orange;
+    display: block;
+}
+ul.list-unstyled li:nth-child(1) a {
+    background: #888;
+}
+ul.list-unstyled li:nth-child(2) a {
+    background: #aaa;
+}
+ul.list-unstyled li:nth-child(3) a {
+    background: #ddd;
+}
+ul.list-unstyled li:nth-child(4) a {
+    background: #eee;
+}
+
+li{
+  width: 33%;
+  float :left;
+}
+
+h2{
+  text-align: center;
+}
