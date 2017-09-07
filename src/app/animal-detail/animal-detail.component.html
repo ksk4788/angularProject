@@ -1,0 +1,19 @@
+<ul class="cards" >
+  <li class="cards__item">
+    <div class="card">
+      <img class="card__image" [src]="animal.popfile">
+      <div class="card__content">
+        <div class="card__title">{{animal.processState}}</div>
+        <p class="card__text">
+					유기번호 : {{animal.desertionNo}}<br>
+					품종 : {{animal.kindCd}}<br>
+					발견일 : {{animal.happenDt}}<br>
+					발견장소 : {{animal.happenPlace}}<br>
+					공고시작일 : {{animal.noticeSdt}}<br>
+					공고종료일 : {{animal.noticeEdt}}
+				</p>
+        <button class="btn btn--block card__btn" [routerLink]="['/detail/animal.desertionNo']">상세보기</button>
+      </div>
+    </div>
+  </li>
+</ul>

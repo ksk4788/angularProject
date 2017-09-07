@@ -14,16 +14,17 @@
                   <h2>유기동물 검색</h2>
                     <ul class="list-unstyled row row-no-gutter">
                         <li class="col-sm-4">
-                            <a href="#"><span>개<span class="sr-only">(current)</span></span></a>
+                            <a [routerLink]="['/animallist/dog']" ><span>개<span class="sr-only">(current)</span></span></a>
                         </li>
                         <li class="col-sm-4">
-                            <a href="#"><span>고양이</span></a>
+                            <a routerLink="/animallist/cat"><span>고양이</span></a>
                         </li>
                         <li class="col-sm-4">
-                            <a href="#"><span>기타 동물</span></a>
+                            <a routerLink="/animallist/etc"><span>기타 동물</span></a>
                         </li>
                     </ul>
                 </div>
+                <!--
                 <div class="col-sm-5">
                     <div class="vertical-align-md">
                         <form role="search">
@@ -44,6 +45,7 @@
                         </form>
                     </div>
                 </div>
+              -->
                 <br>
             </div>
         </div>

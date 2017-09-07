@@ -148,3 +148,12 @@ img {
 }
 
 .form-horizontal_x .col-sm-4 {    padding: 3px;}
+
+ng2-datepicker{
+
+  margin-bottom: 10px;
+
+}
+.datepicker-container[_ngcontent-c3] .datepicker-input-container[_ngcontent-c3] .datepicker-input[_ngcontent-c3]{
+  width:100px;
+}

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Animal } from './animal';
-import { AnimalService } from './animal.service';
-import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/map';
+import { NgDateRangePickerOptions } from 'ng-daterangepicker';
+import { DatePickerOptions, DateModel } from 'ng2-datepicker';
+import { Injectable } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-root',
@@ -10,24 +11,31 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
+  date: DateModel;
+  options: DatePickerOptions;
 
-  results: string[];
-
+  //animals : any[];
   // Inject HttpClient into your component or service.
-  constructor(private http: HttpClient) {}
+  constructor() {
+    this.options = new DatePickerOptions();
 
-  ngOnInit(): void {
-    // Make the HTTP request:
-    this.http.get('http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20140301&endde=20140430&pageNo=1&numOfRows=10&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D')
-    .subscribe(data => {
-        if(data) {
-            console.log('fetching your xml');
-            console.log(data); // this shows me everything
-            console.log(data['response']['body']['items']['item'][0]); // this shows me everything
-            var ttest = data['response']['body']['items']['item'];
-            console.log(ttest);
+  }
+  /*
+  getHero(desertionNo: number): Promise<any[]> { //1
+    return this.getHeroes()
+               .then(heroes => heroes.find(hero => hero.id === id));
+  }
+  */
 
-        }
-    });
+  ngOnInit() {
+/*
+      this.dataservice
+      .getAnimals()
+      .then(animals => this.animals = animals);
+/*
+      this.route.params.subscribe((params: Params) => {
+      this.dataservice.getAnimal(+params['desertionNo']) //3
+      .then(animal => this.animal = animal);
+    });*/
 }
 }
