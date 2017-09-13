@@ -15,6 +15,11 @@ import { NgDateRangePickerModule } from 'ng-daterangepicker';
 import { DatePickerModule } from 'ng2-datepicker';
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { DataService } from './data.service';
+import { AgmCoreModule } from '@agm/core';
+//import { Ng2PaginationModule } from 'ng2-pagination'; //importing ng2-pagination
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -24,14 +29,20 @@ import { DataService } from './data.service';
     AnimalListComponent,
     MainComponent,
     ApiComponent,
-    AnimalDetailComponent
-
+    AnimalDetailComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgDateRangePickerModule,
     DatePickerModule,
+    ChartsModule,
+    //Ng2PaginationModule,
+    NgxPaginationModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCcZDjL6GvXhJ7SjdxnwvKw-m6BYqDjWj4'
+    }),
     RouterModule.forRoot(
       [
       {
@@ -52,6 +63,10 @@ import { DataService } from './data.service';
       {
         path: 'detail/:desertionNo',
         component: AnimalDetailComponent
+      },
+      {
+        path: 'chart',
+        component: ChartComponent
       }
     ])
   ],

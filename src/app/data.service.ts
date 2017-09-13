@@ -7,12 +7,16 @@ import 'rxjs/add/operator/toPromise'; //1-2
 @Injectable()
 export class DataService {
 
-  animals : any;
-
+  animals : any[];
+  date : any[] = ["","","","","","",""];
+  i : number;
+  dateVal : any;
+  bgnde : string;
+  endde : string;
   constructor(private http : HttpClient) { }
 
   getAnimals() : Promise<any[]> {
-    return this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20170801&endde=20170802&pageNo=1&numOfRows=4&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D")
+    return this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20170901&endde=20170912&pageNo=1&numOfRows=1000&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D")
     .toPromise()
     .then(data => this.animals = data['response']['body']['items']['item']);
   }
@@ -20,6 +24,28 @@ export class DataService {
   getAnimal(desertionNo: number): Promise<any[]> { //1
    return this.getAnimals()
               .then(animals => animals.find(animal => animal.desertionNo === desertionNo));
+  }
+
+  getDateTotal(i : number) : Promise<any[]> {
+
+    this.dateVal = new Date();
+
+    let year  = "" + this.dateVal.getFullYear();
+    let day   = "" + (this.dateVal.getDate() - i);
+    let month = "" + (this.dateVal.getMonth() + 1); // 0부터 시작하므로 1더함 더함
+
+    if (("" + month).length == 1) { month = "0" + month; }
+    if (("" + day).length   == 1) { day   = "0" + day;   }
+
+    let today = year + month+ day;
+    console.log("today : " , today);
+    this.bgnde = today;
+    this.endde = today;
+
+    return this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=" + today + "&endde=" + today +"&pageNo=1&numOfRows=1000&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D")
+    .toPromise()
+    .then(data => this.date = data['response']['body']['totalCount']);
+
   }
 /*
   getAnimal(desertionNo: number): Promise<any[]> { //5

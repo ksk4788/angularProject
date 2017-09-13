@@ -3,23 +3,15 @@
 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시작날짜&nbsp;&nbsp;&nbsp;&nbsp;<ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;종료날짜&nbsp;&nbsp;&nbsp;&nbsp;<ng2-datepicker [options]="options" [(ngModel)]="date2"></ng2-datepicker>
-<button (click)="dateValueFn()">날짜별 조회</button>
+
 </div>
-	<div class="col-md-12">
+	<div class="col-md-12" >
 	<form class="form-horizontal form-horizontal_x">
 	<div class="col-md-12">
 	    <div class="form-group">
-
-	      <div class="col-sm-4">
-		 <select  name="hotel" id="hotel" required="" class="form-control" onchange="changeFormaction2(this.value);">
-            <option value="" selected="">품종 조건설정</option>
-            <option value="67961">Pride Plaza Hotel Ahmedabad</option>
-            <option value="67964">The Pride Hotel Bengaluru</option>
-    </select>
-
-	        <!-- <input type="text" class="form-control" id="email" placeholder="Enter email"> -->
-	      </div>
-
+				<div class="col-sm-4">
+				<button id="dateBtn" (click)="dateValueFn()">날짜별 조회</button>
+			</div>
 		  <div class="col-sm-4">
 		 <select  name="hotel" id="hotel" required="" class="form-control" (change)="changeFormaction2($event.target.value);">
 	          <option value="" selected="">지역 조건설정</option>
@@ -47,16 +39,16 @@
           <option value="29191">기타</option>
     </select>
 
-	        <!-- <input type="text" class="form-control" id="email" placeholder="Enter email"> -->
+		      <!-- <input type="text" class="form-control" id="email" placeholder="Enter email"> -->
 	      </div>
-	    </div>
+					    </div>
 		</div>
 
 	  </form>
 	  </div>
 
-<ul class="cards" *ngFor="let animal of animals">
-  <li class="cards__item">
+<ul class="cards">
+  <li class="cards__item" *ngFor="let animal of animals | paginate: {itemsPerPage: 10, currentPage:page}">
     <div class="card">
       <img class="card__image" [src]="animal.popfile">
       <div class="card__content">
@@ -69,8 +61,12 @@
 					공고시작일 : {{animal.noticeSdt}}<br>
 					공고종료일 : {{animal.noticeEdt}}
 				</p>
-        <button class="btn btn--block card__btn" [routerLink]="['/detail/animal.desertionNo']">상세보기</button>
+        <button class="btn btn--block card__btn" routerLink="/detail/{{animal.desertionNo}}">상세보기</button>
       </div>
     </div>
   </li>
 </ul>
+<div id="pagi">
+<pagination-controls class="pagi" (pageChange)="page = $event">
+</pagination-controls>
+</div>

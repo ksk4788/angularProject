@@ -1,4 +1,5 @@
-<ul class="cards" >
+<app-header></app-header>
+<ul class="cards" *ngIf="animal">
   <li class="cards__item">
     <div class="card">
       <img class="card__image" [src]="animal.popfile">
@@ -6,13 +7,28 @@
         <div class="card__title">{{animal.processState}}</div>
         <p class="card__text">
 					유기번호 : {{animal.desertionNo}}<br>
-					품종 : {{animal.kindCd}}<br>
-					발견일 : {{animal.happenDt}}<br>
+					접수일 : {{animal.happenDt}}<br>
 					발견장소 : {{animal.happenPlace}}<br>
+          품종 : {{animal.kindCd}}<br>
+          나이 : {{age}}
+          체중 : {{weight}}
 					공고시작일 : {{animal.noticeSdt}}<br>
-					공고종료일 : {{animal.noticeEdt}}
+					공고종료일 : {{animal.noticeEdt}}<br>
+          상태 : {{animal.processState}}<br>
+          성별 : {{animal.sexCd}}<br>
+          중성화여부 : {{animal.neuterYn}}<br>
+          특징 : {{animal.specialMark}}<br>
+          보호소이름 : {{animal.careNm}}<br>
+          보호소전화번호 : {{animal.careTel}}<br>
+          보호장소 : {{animal.careAdder}}<br>
+          관할기관 : {{animal.orgNm}}<br>
+          담당자 : {{animal.chargeNm}}<br>
+          담당자 연락처 : {{animal.chargeNm}}<br>
+          발견장소 지도 :
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
 				</p>
-        <button class="btn btn--block card__btn" [routerLink]="['/detail/animal.desertionNo']">상세보기</button>
       </div>
     </div>
   </li>

@@ -11,14 +11,10 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  date: DateModel;
-  options: DatePickerOptions;
 
   //animals : any[];
   // Inject HttpClient into your component or service.
   constructor() {
-    this.options = new DatePickerOptions();
-
   }
   /*
   getHero(desertionNo: number): Promise<any[]> { //1

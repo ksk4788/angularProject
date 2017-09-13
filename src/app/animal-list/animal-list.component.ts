@@ -9,6 +9,7 @@ import { ActivatedRoute,  Router } from '@angular/router';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 import { NgDateRangePickerOptions } from 'ng-daterangepicker';
 import { MdPaginatorModule } from '@angular/material';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-animal-list',
@@ -38,7 +39,8 @@ export class AnimalListComponent implements OnInit {
     constructor(
       private http: HttpClient,
       private route: ActivatedRoute,
-      private elm : ElementRef
+      private elm : ElementRef,
+      private dataservice : DataService
     ) {
       this.options = new DatePickerOptions();
       console.log(elm.nativeElement.getAttribute('.datepicker-input'));
@@ -76,6 +78,12 @@ export class AnimalListComponent implements OnInit {
       this.bgnde = today;
       this.endde = today;
     }
+/*
+    getAnimals(): void {
+    this.dataservice.getAnimals().then(animals => this.animals = animals);*/
+
+
+
     // Make the HTTP request:
     ngOnInit(): void {
 
@@ -105,7 +113,7 @@ export class AnimalListComponent implements OnInit {
           this.upkind = "417000";
         }
         // do whatever you want with id here "&upr_cd=" + test +
-        this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=" + this.bgnde + "&endde=" + this.endde +"&upkind=" + this.upkind + "&upr_cd=" + this.test + "&pageNo=1&numOfRows=4&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D").subscribe(data => {
+        this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=" + this.bgnde + "&endde=" + this.endde +"&upkind=" + this.upkind + "&upr_cd=" + this.test + "&pageNo=1&numOfRows=100&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D").subscribe(data => {
           // Read the result field from the JSON response.
           this.animals = data['response']['body']['items']['item'];
           console.log("==========동물 API============" ,this.animals);
@@ -123,6 +131,7 @@ export class AnimalListComponent implements OnInit {
       ngOnDestroy() {
         this.sub.unsubscribe();
       }
+
   }
 
 
