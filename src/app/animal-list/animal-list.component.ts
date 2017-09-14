@@ -35,6 +35,7 @@ export class AnimalListComponent implements OnInit {
     endde: string;
     dateVal: any;
     private sub: any;
+    private noAnimal: any;
 
     constructor(
       private http: HttpClient,
@@ -47,12 +48,12 @@ export class AnimalListComponent implements OnInit {
 
     }
 
-    dateValueFn() {
+    dateValueFn(): void {
       console.log(this.date['year']+this.date['month']+this.date['day']);
       console.log(this.date2['year']+this.date2['month']+this.date2['day']);
       this.bgnde = this.date['year']+this.date['month']+this.date['day'];
       this.endde = this.date2['year']+this.date2['month']+this.date2['day'];
-      this.ngOnInit();
+      this.dataservice.getAnimals(this.bgnde,this.endde).then(animals => this.animals = animals);
     }
 
     changeFormaction2(place)  {
@@ -60,7 +61,17 @@ export class AnimalListComponent implements OnInit {
        this.test = place;
        this.ngOnInit();
     }
+/*
+    getDateAniamls(): void {
 
+    console.log(this.date['year']+this.date['month']+this.date['day']);
+    console.log(this.date2['year']+this.date2['month']+this.date2['day']);
+    this.bgnde = this.date['year']+this.date['month']+this.date['day'];
+    this.endde = this.date2['year']+this.date2['month']+this.date2['day'];
+    this.dataservice.getAnimals(this.bgnde,this.endde).then(animals => this.animals = animals);
+
+    }
+*/
     todayDate() {
       //오늘날짜 받아와서 API에 넣기//////////////
       this.dateVal = new Date();
@@ -78,7 +89,7 @@ export class AnimalListComponent implements OnInit {
       this.bgnde = today;
       this.endde = today;
     }
-/*
+    /*
     getAnimals(): void {
     this.dataservice.getAnimals().then(animals => this.animals = animals);*/
 
@@ -87,8 +98,17 @@ export class AnimalListComponent implements OnInit {
     // Make the HTTP request:
     ngOnInit(): void {
 
-        /////////////////////////////////////////
+        this.todayDate();
+        console.log("1",this.bgnde);
+        console.log("2",this.endde);
+        this.dataservice.getAnimals(this.bgnde,this.endde).then(animals => {
+          this.animals = animals;
+          console.log("동물API :   ss", this.animals);
+        }
+      );
 
+        /////////////////////////////////////////
+/*
         if(this.bgnde == undefined || this.bgnde == null || this.endde == undefined || this.bgnde == null){
           this.todayDate();
         }
@@ -111,28 +131,29 @@ export class AnimalListComponent implements OnInit {
           this.upkind = "417000";
         }else{
           this.upkind = "417000";
-        }
+        }*/
         // do whatever you want with id here "&upr_cd=" + test +
+/*
         this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=" + this.bgnde + "&endde=" + this.endde +"&upkind=" + this.upkind + "&upr_cd=" + this.test + "&pageNo=1&numOfRows=100&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D").subscribe(data => {
           // Read the result field from the JSON response.
+          console.log("==========동물 API============" ,data);
           this.animals = data['response']['body']['items']['item'];
-          console.log("==========동물 API============" ,this.animals);
+          //console.log("==========동물 API============" ,this.animals);
         });
-
-        this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D").subscribe(data => {
+        */
+/*
+        this.dataservice.getAnimals()
+        .then(result => this.animals = result);
+*/
+        this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?ServiceKey=m0IaUEhDAmP5V7bv4rScBSUaClWci3DaRF%2BbRpr%2Fqk4koGWJx3HlFCJf1%2F%2FYMcCr%2BHYZWn2PwAKw%2BsKdGaiU0g%3D%3D").subscribe(data => {
           // Read the result field from the JSON response.
-          this.places = data['response']['body']['items']['item'];
-          console.log("==========시군구 API============" ,this.places);
+          //this.places = data['response']['body']['items']['item'];
+          console.log("==========시군구 API============" ,data);
           });
 
-        });
+        }
       }
 
-      ngOnDestroy() {
-        this.sub.unsubscribe();
-      }
-
-  }
 
 
 

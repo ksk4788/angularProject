@@ -46,7 +46,7 @@
 
 	  </form>
 	  </div>
-
+<h4 *ngIf="noAnimal">해당하는 유기동물이 없습니다.</h4>
 <ul class="cards">
   <li class="cards__item" *ngFor="let animal of animals | paginate: {itemsPerPage: 10, currentPage:page}">
     <div class="card">
@@ -70,3 +70,4 @@
 <pagination-controls class="pagi" (pageChange)="page = $event">
 </pagination-controls>
 </div>
+<app-chart></app-chart>

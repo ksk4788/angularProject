@@ -1,0 +1,109 @@
+<response>
+<header>
+<resultCode>00</resultCode>
+<resultMsg>NORMAL SERVICE.</resultMsg>
+</header>
+<body>
+<items>
+<item>
+<desertionNo>411314201400052</desertionNo>
+<filename>http://www.animal.go.kr/files/shelter/2014/02/201403010903285_s.jpg</filename>
+<happenDt>20140301</happenDt>
+<happenPlace>신월3동195-1근처</happenPlace>
+<kindCd>[개] 믹스견</kindCd>
+<colorCd>갈/검/흰</colorCd>
+<age>3살추정</age>
+<weight>3.8(Kg)</weight>
+<noticeNo>서울-양천-2014-00050</noticeNo>
+<noticeSdt>20140303</noticeSdt>
+<noticeEdt>20140313</noticeEdt>
+<popfile>http://www.animal.go.kr/files/shelter/2014/02/201403010903285.jpg</popfile>
+<processState>종료(입양)</processState>
+<sexCd>F</sexCd>
+<specialMark>치석있으며건강함</specialMark>
+<careNm>유기동물보호소</careNm>
+<careTel>02-123-4567</careTel>
+<careAddr>서울특별시 양천구 신월3동</careAddr>
+<orgNm>서울특별시 양천구</orgNm>
+<chargeNm>홍길동</chargeNm>
+<officetel>02-111-1111</officetel>
+<noticeComment>없음</noticeComment>
+</item>
+<item>
+<desertionNo>431370201400125</desertionNo>
+<filename>http://www.animal.go.kr/files/shelter/2014/02/201403010903898_s.jpg</filename>
+<happenDt>20140301</happenDt>
+<happenPlace>시외버스터미널</happenPlace>
+<kindCd>[개] 믹스견</kindCd>
+<colorCd>갈/검/흰</colorCd>
+<age>3살추정</age>
+<weight>3.8(Kg)</weight>
+<noticeNo>울산-남구-2014-00123</noticeNo>
+<noticeSdt>20140301</noticeSdt>
+<noticeEdt>20140311</noticeEdt>
+<popfile>http://www.animal.go.kr/files/shelter/2014/02/201403010903898.jpg</popfile>
+<processState>종료(입양)</processState>
+<sexCd>F</sexCd>
+<specialMark>중이염 심각함,줄무늬</specialMark>
+<careNm>유기동물보호소</careNm>
+<careTel>02-123-4567</careTel>
+<careAddr>서울특별시 양천구 신월3동</careAddr>
+<orgNm>서울특별시 양천구</orgNm>
+<chargeNm>홍길동</chargeNm>
+<officetel>02-111-1111</officetel>
+<noticeComment>없음</noticeComment>
+</item>
+<item>
+<desertionNo>431370201400199</desertionNo>
+<filename>http://www.animal.go.kr/files/shelter/2014/02/201403010903898_s.jpg</filename>
+<happenDt>20140301</happenDt>
+<happenPlace>시외버스터미널</happenPlace>
+<kindCd>[개] 믹스견</kindCd>
+<colorCd>갈/검/흰</colorCd>
+<age>3살추정</age>
+<weight>3.8(Kg)</weight>
+<noticeNo>울산-남구-2014-00123</noticeNo>
+<noticeSdt>20140301</noticeSdt>
+<noticeEdt>20140311</noticeEdt>
+<popfile>http://www.animal.go.kr/files/shelter/2014/02/201403010903898.jpg</popfile>
+<processState>종료(입양)</processState>
+<sexCd>F</sexCd>
+<specialMark>중이염 심각함,줄무늬</specialMark>
+<careNm>유기동물보호소</careNm>
+<careTel>02-123-4567</careTel>
+<careAddr>서울특별시 양천구 신월3동</careAddr>
+<orgNm>서울특별시 양천구</orgNm>
+<chargeNm>홍길동</chargeNm>
+<officetel>02-111-1111</officetel>
+<noticeComment>없음</noticeComment>
+</item>
+<item>
+<desertionNo>431370201400129</desertionNo>
+<filename>http://www.animal.go.kr/files/shelter/2014/02/201403010903898_s.jpg</filename>
+<happenDt>20140301</happenDt>
+<happenPlace>시외버스터미널</happenPlace>
+<kindCd>[개] 믹스견</kindCd>
+<colorCd>갈/검/흰</colorCd>
+<age>3살추정</age>
+<weight>3.8(Kg)</weight>
+<noticeNo>울산-남구-2014-00123</noticeNo>
+<noticeSdt>20140301</noticeSdt>
+<noticeEdt>20140311</noticeEdt>
+<popfile>http://www.animal.go.kr/files/shelter/2014/02/201403010903898.jpg</popfile>
+<processState>종료(입양)</processState>
+<sexCd>F</sexCd>
+<specialMark>중이염 심각함,줄무늬</specialMark>
+<careNm>유기동물보호소</careNm>
+<careTel>02-123-4567</careTel>
+<careAddr>서울특별시 양천구 신월3동</careAddr>
+<orgNm>서울특별시 양천구</orgNm>
+<chargeNm>홍길동</chargeNm>
+<officetel>02-111-1111</officetel>
+<noticeComment>없음</noticeComment>
+</item>
+</items>
+<numOfRows>10</numOfRows>
+<pageNo>1</pageNo>
+<totalCount>6840</totalCount>
+</body>
+</response>
