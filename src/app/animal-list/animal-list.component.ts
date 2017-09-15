@@ -18,25 +18,22 @@ import { DataService } from '../data.service';
 })
 export class AnimalListComponent implements OnInit {
 
-
+    //변수 타입 선언
     upkind: string;
     animals = [];
     places = [];
-
-    //  servicekey = 'aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D';
-    //  upkind = 417000;
-    //  apiURI = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20170901&endde=20170903&upkind=" + upkind + "&pageNo=1&numOfRows=100&ServiceKey="+servicekey;
-    // Inject HttpClient into your component or service.
     date: DateModel;
     date2: DateModel;
     options: DatePickerOptions;
-    test: string;
+    place1: string;
     bgnde: string;
     endde: string;
+    upr_cd: string;
     dateVal: any;
     private sub: any;
     private noAnimal: any;
 
+    //생성자
     constructor(
       private http: HttpClient,
       private route: ActivatedRoute,
@@ -45,41 +42,31 @@ export class AnimalListComponent implements OnInit {
     ) {
       this.options = new DatePickerOptions();
       console.log(elm.nativeElement.getAttribute('.datepicker-input'));
-
     }
 
+    //날짜 별 유기동물 조회
     dateValueFn(): void {
       console.log(this.date['year']+this.date['month']+this.date['day']);
       console.log(this.date2['year']+this.date2['month']+this.date2['day']);
       this.bgnde = this.date['year']+this.date['month']+this.date['day'];
       this.endde = this.date2['year']+this.date2['month']+this.date2['day'];
-      this.dataservice.getAnimals(this.bgnde,this.endde).then(animals => this.animals = animals);
+      this.dataservice.getAnimals(this.bgnde,this.endde,this.upkind,this.upr_cd).then(animals => this.animals = animals);
     }
 
+    //지역 별 유기동물 조회
     changeFormaction2(place)  {
        console.log("지역코드 : ", place);
-       this.test = place;
-       this.ngOnInit();
+       this.upr_cd = place;
+       this.dataservice.getAnimals(this.bgnde,this.endde,this.upkind,this.upr_cd).then(animals => this.animals = animals);
     }
-/*
-    getDateAniamls(): void {
 
-    console.log(this.date['year']+this.date['month']+this.date['day']);
-    console.log(this.date2['year']+this.date2['month']+this.date2['day']);
-    this.bgnde = this.date['year']+this.date['month']+this.date['day'];
-    this.endde = this.date2['year']+this.date2['month']+this.date2['day'];
-    this.dataservice.getAnimals(this.bgnde,this.endde).then(animals => this.animals = animals);
-
-    }
-*/
+    //오늘날짜 받아와서 bgnde, endde에 넣기
     todayDate() {
-      //오늘날짜 받아와서 API에 넣기//////////////
       this.dateVal = new Date();
 
       let year  = "" + this.dateVal.getFullYear();
       let day   = "" + this.dateVal.getDate();
       let month = "" + (this.dateVal.getMonth() + 1); // 0부터 시작하므로 1더함 더함
-
 
       if (("" + month).length == 1) { month = "0" + month; }
       if (("" + day).length   == 1) { day   = "0" + day;   }
@@ -89,36 +76,23 @@ export class AnimalListComponent implements OnInit {
       this.bgnde = today;
       this.endde = today;
     }
-    /*
-    getAnimals(): void {
-    this.dataservice.getAnimals().then(animals => this.animals = animals);*/
 
-
-
-    // Make the HTTP request:
     ngOnInit(): void {
 
-        this.todayDate();
-        console.log("1",this.bgnde);
-        console.log("2",this.endde);
-        this.dataservice.getAnimals(this.bgnde,this.endde).then(animals => {
-          this.animals = animals;
-          console.log("동물API :   ss", this.animals);
-        }
-      );
+      //파라미터 값 가져와서 품종 값 설정
+      this.sub = this.route.params
+     .subscribe(params => {
 
-        /////////////////////////////////////////
-/*
+        //시작날짜, 종료날짜 undefined , null 처리
         if(this.bgnde == undefined || this.bgnde == null || this.endde == undefined || this.bgnde == null){
           this.todayDate();
         }
-        if(this.test == undefined || this.test == null){
-          this.test = "";
+        //지역코드가 없을 경우 "" 처리
+        if(this.upr_cd == undefined || this.upr_cd == null){
+          this.upr_cd = "";
         }
 
-        this.sub = this.route.params
-       .subscribe(params => {
-        // get id from params
+        //url 파라미터 가져오기
         let upKind = params['upKind'];
         this.upkind = upKind;
 
@@ -131,55 +105,40 @@ export class AnimalListComponent implements OnInit {
           this.upkind = "417000";
         }else{
           this.upkind = "417000";
-        }*/
-        // do whatever you want with id here "&upr_cd=" + test +
-/*
-        this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=" + this.bgnde + "&endde=" + this.endde +"&upkind=" + this.upkind + "&upr_cd=" + this.test + "&pageNo=1&numOfRows=100&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D").subscribe(data => {
-          // Read the result field from the JSON response.
-          console.log("==========동물 API============" ,data);
-          this.animals = data['response']['body']['items']['item'];
-          //console.log("==========동물 API============" ,this.animals);
+        }
+
+        this.todayDate();
+        console.log("1",this.bgnde);
+        console.log("2",this.endde);
+
+        //컴포넌트 진입/로드된 후 API 호출
+        this.dataservice.getAnimals(this.bgnde,this.endde,this.upkind,this.upr_cd).then(animals => {
+          this.animals = animals;
+          console.log("동물API :   ss", this.animals);
         });
-        */
-/*
-        this.dataservice.getAnimals()
-        .then(result => this.animals = result);
-*/
-        this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?ServiceKey=m0IaUEhDAmP5V7bv4rScBSUaClWci3DaRF%2BbRpr%2Fqk4koGWJx3HlFCJf1%2F%2FYMcCr%2BHYZWn2PwAKw%2BsKdGaiU0g%3D%3D").subscribe(data => {
-          // Read the result field from the JSON response.
-          //this.places = data['response']['body']['items']['item'];
-          console.log("==========시군구 API============" ,data);
-          });
-
-        }
-      }
+      });
 
 
+      this.http.get("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?ServiceKey=m0IaUEhDAmP5V7bv4rScBSUaClWci3DaRF%2BbRpr%2Fqk4koGWJx3HlFCJf1%2F%2FYMcCr%2BHYZWn2PwAKw%2BsKdGaiU0g%3D%3D").subscribe(data => {
+        // Read the result field from the JSON response.
+        this.places = data['response']['body']['items']['item'];
+        console.log("==========시군구 API============" ,data);
+      });
 
-
-/*
-  constructor(private animalservice : AnimalService,
-              private appcomponent : AppComponent,
-              private http: HttpClient
-  ){}
-  animals : Animal[];
-
-
-  ngOnInit() : void{
-    this.animalservice.getAnimals()
-    .then(result => this.animals = result);
+    }
   }
+
+
+/*
+1.개요
+- 동물보호관리시스템 유기동물 조회 서비스를 이용한 유기동물 검색
+- 유기동물 찾기 또는 입양에 도움이 될 수 있는 서비스 제공
+2.서비스 대상
+- 유기동물에 관심이 많은 사용자
+- 애완동물에 관심이 많은 사용자
+- 일반 사용자
+3.목적
+- 본 어플을 통해 잃어버린 애완동물에 대한 찾기 서비스를 이용하여 유기동물의 수를 줄임
+- 지역별 유기동물 검색 서비스를 제공하여 해당 지역의 유기동물 입양을 원활히 할 수 있도록 함
+- 동물관리 정보를 통해 동물을 유기하는 행동을 예방
 */
-  /*
-  ngOnInit(): void {
-    // Make the HTTP request:
-    this.http.get('http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20140301&endde=20140430&pageNo=1&numOfRows=10&ServiceKey=aWCH538NtqEGDSAcSKwFrokoB2CYu6X863cSAFevilxrZU8Fk%2FyPucTQR7ZIByJlVZviO4eMirz3sakW9kAZqg%3D%3D')
-    .subscribe(data => {
-        if(data) {
-            console.log('fetching your xml');
-            console.log(data); // this shows me everything
-            console.log(data['response']['body']['items']['item'][0]); // this shows me everything
-            const apitex = data['response']['body']['items']['item'];
-        }
-    });
-}*/
